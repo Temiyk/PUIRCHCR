@@ -38,6 +38,6 @@
 
 ## Установка и запуск программы
 
-1. Скачайте архив [Psychology tests.zip](https://github.com/Temiyk/PUIRCHCR/blob/master/Psychology%20tests.zip)
+1. Скачайте архив [Psychology tests.zip](https://github.com/Temiyk/PUIRCHCR/raw/refs/heads/master/Psychology%20tests.zip)
 2. Распакуйте архив в любую удобную папку
 3. Запустите Quizes2.exe
