@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Quizes2"
         mc:Ignorable="d"
         Title="Тест" Width="600" Height="500">
+    <Window.Background>
+        <ImageBrush ImageSource="/фон.png" Stretch="None" TileMode="Tile"/>
+    </Window.Background>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -19,19 +22,19 @@
         <TextBlock x:Name="ProgressText"
                    FontSize="14" 
                    Margin="0 0 0 10"
-                   Grid.Row="0"/>
+                   Grid.Row="0" FontFamily="Cascadia Mono"/>
 
         <!-- Вопрос -->
         <TextBlock x:Name="QuestionText"
                    FontSize="18" 
                    FontWeight="Bold"
                    TextWrapping="Wrap"
-                   Grid.Row="1"/>
+                   Grid.Row="1" FontFamily="Cascadia Mono"/>
 
         <!-- Ответы с ScrollViewer -->
         <ScrollViewer Grid.Row="2" 
                       Margin="0 20 0 20"
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto" FontFamily="Cascadia Mono">
             <StackPanel x:Name="AnswersPanel" />
         </ScrollViewer>
 
@@ -46,12 +49,12 @@
                         Height="40"
                         Margin="0,0,10,0"
                         Click="BackButton_Click"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden" Background="#FFE5EBFF" BorderBrush="#FFB5B5B5" FontFamily="Cascadia Mono"/>
                 <Button x:Name="NextButton"
                         Content="Далее"
                         Width="120" 
                         Height="40"
-                        Click="NextButton_Click"/>
+                        Click="NextButton_Click" Background="#FFE5EBFF" BorderBrush="#FFB5B5B5" FontFamily="Cascadia Mono"/>
             </DockPanel>
         </StackPanel>
     </Grid>

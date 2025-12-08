@@ -22,6 +22,7 @@ namespace Quizes2
         private TestData testData;
         private string selectedTestFile;
         private Dictionary<string, List<string>> themesAndTests;
+        bool cDir;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,8 +39,17 @@ namespace Quizes2
             string projectPath = Path.GetFullPath(Path.Combine(baseDir, @"..\..\.."));
 
             string testsFolder = Path.Combine(projectPath, "tests");
+            cDir = false;
 
             if (!Directory.Exists(testsFolder))
+            {
+                projectPath = Path.GetFullPath(Path.Combine(baseDir));
+
+                testsFolder = Path.Combine(projectPath, "tests");
+                cDir = true;
+            }
+
+                if (!Directory.Exists(testsFolder))
             {
                 MessageBox.Show($"Папка с тестами не найдена! Путь: {testsFolder}\n" +
                                "Создайте папку 'tests' с подпапками-темами в корне проекта.",
@@ -70,7 +80,10 @@ namespace Quizes2
         private string GetTestsFolderPath()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            string projectPath = Path.GetFullPath(Path.Combine(baseDir, @"..\..\.."));
+            string projectPath;
+            if (cDir == false) {projectPath = Path.GetFullPath(Path.Combine(baseDir, @"..\..\.."));}
+            else { projectPath = Path.GetFullPath(Path.Combine(baseDir)); }
+            
             return Path.Combine(projectPath, "tests");
         }
         private void StartBtn_Click(object sender, RoutedEventArgs e)

@@ -6,20 +6,24 @@
         xmlns:ctrl="clr-namespace:Quizes2.Controls"
         mc:Ignorable="d"
         Title="Результат" Width="707" Height="514" >
+    <Window.Background>
+        <ImageBrush ImageSource="/фон.png" Stretch="None"/>
+    </Window.Background>
 
     <Grid Margin="0,0,0,-6" Background="Transparent">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="76*"/>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="424*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Текст -->
-        <StackPanel Margin="20" IsHitTestVisible="False">
+        <StackPanel Margin="20,20,20,20" IsHitTestVisible="False" Grid.ColumnSpan="2">
 
             <TextBlock x:Name="TitleText"
                        FontSize="24" FontWeight="Bold"
-                       TextWrapping="Wrap" Margin="0 0 0 10"/>
+                       TextWrapping="Wrap" Margin="0 0 0 10" FontFamily="Cascadia Mono SemiBold"/>
 
             <TextBlock x:Name="ScoreText"
                        FontSize="18"
@@ -31,7 +35,7 @@
 
         </StackPanel>
         <ctrl:Cube3DControl x:Name="Cube3"
-                            Grid.Column="1" Margin="12,44,12,20" Background="Transparent"/>
+                            Grid.Column="2" Margin="12,64,12,40" Background="Transparent"/>
 
         <!-- КУБ -->
 

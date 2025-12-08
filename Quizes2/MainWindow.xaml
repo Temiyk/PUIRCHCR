@@ -5,33 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quizes2"
         mc:Ignorable="d"
-        Title="Тест" Height="550" Width="730">
+        Title="Тест" Height="550" Width="730" BorderBrush="#FF0D0F13">
+    <Window.Background>
+        <ImageBrush Stretch="None" TileMode="Tile" ImageSource="/фон.png"/>
+    </Window.Background>
     <Grid Margin="20" Height="450">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" Height="122" Margin="0,0,0,20" TextWrapping="Wrap" Text="Тесты по психологии управления и развитию человеческих ресурсов" VerticalAlignment="Top" Width="400" TextAlignment="Center" FontSize="24" FontWeight="SemiBold"/>
+        <TextBlock HorizontalAlignment="Center" Height="122" TextWrapping="Wrap" Text="Тесты по психологии управления и развитию человеческих ресурсов" VerticalAlignment="Top" Width="610" TextAlignment="Center" FontSize="32" FontFamily="Cascadia Code SemiBold"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <TextBlock TextWrapping="Wrap" Text="Темы тестов:" FontWeight="Bold" Margin="0,0,0,10"/>
-                <ListBox x:Name="ThemesListBox" Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ThemesListBox_SelectionChanged"/>
+                <TextBlock TextWrapping="Wrap" Text="Темы тестов:" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Cascadia Mono" FontSize="15"/>
+                <ListBox x:Name="ThemesListBox" Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ThemesListBox_SelectionChanged" FontFamily="Cascadia Code SemiLight" BorderBrush="#FFD0CFF5" Background="#FFF0F5FF"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock TextWrapping="Wrap" Text="Тесты:" FontWeight="Bold" Margin="0,0,0,10"/>
-                <ListBox x:Name="TestsListBox" Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="TestsListBox_SelectionChanged"/>
+                <TextBlock TextWrapping="Wrap" Text="Тесты:" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Cascadia Mono" FontSize="15"/>
+                <ListBox x:Name="TestsListBox" Height="200" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="TestsListBox_SelectionChanged" FontFamily="Cascadia Code SemiLight" BorderBrush="#FFD0CFF5" Background="#FFF0F5FF"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,20,0">
 
-            <Button x:Name="ExitBtn" Content="Выход" Height="40" Width="120" Margin="10,0,0,0" Click="ExitBtn_Click"/>
-            <Button x:Name="StartBtn" Content="Начать тест" Height="40" Width="120" IsEnabled="False" Margin="10,0,0,0" Click="StartBtn_Click_1"/>
+            <Button x:Name="ExitBtn" Content="Выход" Height="40" Width="120" Margin="10,0,0,0" Click="ExitBtn_Click" FontFamily="Cascadia Mono" Background="#FFE5EBFF" BorderBrush="#FFB5B5B5"/>
+            <Button x:Name="StartBtn" Content="Начать тест" Height="40" Width="120" IsEnabled="False" Margin="10,0,0,0" Click="StartBtn_Click_1" FontFamily="Cascadia Mono" BorderBrush="#FFB5B5B5">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFE5EBFF"/>
+                </Button.Background>
+            </Button>
         </StackPanel>
 
     </Grid>

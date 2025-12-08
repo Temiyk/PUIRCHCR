@@ -7,9 +7,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\фон.png" />
+    <None Remove="фон.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\фон.png" />
+  </ItemGroup>
 	
 	<ItemGroup>
     <Resource Include="Assets\123.png" />
+    <Resource Include="фон.png" />
   </ItemGroup>
 	
 	
