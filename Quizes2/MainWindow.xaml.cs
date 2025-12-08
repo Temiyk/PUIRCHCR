@@ -30,21 +30,31 @@ namespace Quizes2
         private void LoadThemesAndTests() 
         {
             themesAndTests = new Dictionary<string, List<string>>();
-            string testsFolder = Path.Combine(Directory.GetCurrentDirectory(), "tests");
+
+            // Путь к папке проекта - используем относительный путь от исполняемого файла
+            // Исполняемый файл находится в bin\Debug\net8.0-windows\ (или подобное)
+            // Нужно подняться на 3 уровня вверх
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string projectPath = Path.GetFullPath(Path.Combine(baseDir, @"..\..\.."));
+
+            string testsFolder = Path.Combine(projectPath, "tests");
 
             if (!Directory.Exists(testsFolder))
             {
-                MessageBox.Show("Папка с тестами не найдена! Создайте папку 'tests' с подпапками-темами.",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Папка с тестами не найдена! Путь: {testsFolder}\n" +
+                               "Создайте папку 'tests' с подпапками-темами в корне проекта.",
+                               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
             var themeFolders = Directory.GetDirectories(testsFolder);
-            if (themeFolders.Length == 0) 
+            if (themeFolders.Length == 0)
             {
                 MessageBox.Show("В папке 'tests' не найдено подпапок с темами.",
-                    "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                               "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
+
             foreach (var themeFolder in themeFolders)
             {
                 string themeName = Path.GetFileName(themeFolder);
@@ -53,8 +63,15 @@ namespace Quizes2
                                         .ToList();
 
                 themesAndTests[themeName] = testFiles;
-                ThemesListBox.ItemsSource = themesAndTests.Keys.OrderBy(x => x);
             }
+
+            ThemesListBox.ItemsSource = themesAndTests.Keys.OrderBy(x => x);
+        }
+        private string GetTestsFolderPath()
+        {
+            string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string projectDirectory = Directory.GetParent(assemblyLocation).Parent.Parent.FullName;
+            return Path.Combine(projectDirectory, "tests");
         }
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -63,7 +80,6 @@ namespace Quizes2
 
         private TestData ParseTestFile(string filePath)
         {
-            // Читаем все строки файла (UTF-8)
             var lines = System.IO.File.ReadAllLines(filePath, Encoding.UTF8);
             var data = new TestData();
 
@@ -179,10 +195,10 @@ namespace Quizes2
                 {
                     try
                     {
-                        string testsFolder = Path.Combine(Directory.GetCurrentDirectory(), "tests");
+                        string testsFolder = GetTestsFolderPath();
                         string filePath = Path.Combine(testsFolder, selectedTheme, testFile);
-                        string firstLine = File.ReadLines(filePath, Encoding.UTF8).FirstOrDefault()?.Trim();
 
+                        string firstLine = File.ReadLines(filePath, Encoding.UTF8).FirstOrDefault()?.Trim();
                         testTitles.Add(string.IsNullOrEmpty(firstLine) ? testFile : firstLine);
                     }
                     catch
@@ -206,7 +222,8 @@ namespace Quizes2
             if (selectedIndex >= 0 && selectedIndex < themesAndTests[theme].Count)
             {
                 string testFile = themesAndTests[theme][selectedIndex];
-                string testsFolder = Path.Combine(Directory.GetCurrentDirectory(), "tests");
+
+                string testsFolder = GetTestsFolderPath();
                 selectedTestFile = Path.Combine(testsFolder, theme, testFile);
 
                 try
