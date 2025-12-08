@@ -69,9 +69,9 @@ namespace Quizes2
         }
         private string GetTestsFolderPath()
         {
-            string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string projectDirectory = Directory.GetParent(assemblyLocation).Parent.Parent.FullName;
-            return Path.Combine(projectDirectory, "tests");
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string projectPath = Path.GetFullPath(Path.Combine(baseDir, @"..\..\.."));
+            return Path.Combine(projectPath, "tests");
         }
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
