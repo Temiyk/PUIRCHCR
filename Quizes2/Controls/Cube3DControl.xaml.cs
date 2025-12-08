@@ -15,7 +15,7 @@ namespace Quizes2.Controls
         public string ScoreText { get; set; }
         public string ResultText { get; set; }
         public ImageSource ImageSide { get; set; }
-
+        public string OtherTestsText { get; set; } = "Вы можете закрыть это окно и пройти другие наши тесты";
         public Cube3DControl()
         {
             
@@ -150,11 +150,10 @@ namespace Quizes2.Controls
                 CreateTextBrush(ResultText)));
 
             // LEFT  (Image)
-            if (ImageSide != null)
-                CubeModel.Children.Add(CreateFace(
-                    new Point3D(-s, -s, -s), new Point3D(-s, -s, s),
-                    new Point3D(-s, s, s), new Point3D(-s, s, -s),
-                    CreateImageBrush(ImageSide)));
+            CubeModel.Children.Add(CreateFace(
+                new Point3D(-s, -s, -s), new Point3D(-s, -s, s),
+                new Point3D(-s, s, s), new Point3D(-s, s, -s),
+                CreateTextBrush(OtherTestsText)));
 
             CubeModel.Children.Add(CreateFace(
                 new Point3D(-s, -s, s),   // p0
